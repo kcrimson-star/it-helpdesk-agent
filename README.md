@@ -1,110 +1,113 @@
-# NovaDesk AI — Intelligent Enterprise IT Helpdesk Agent
+# HelpDesk Support Platform — Enterprise IT Service Management
 
-![IT Helpdesk Agent Motion Graphics Showcase](it_helpdesk_preview.gif)
+![HelpDesk Platform Showcase](it_helpdesk_preview.gif)
 
-An end-to-end IT Helpdesk management platform powered by **FastAPI**, **LangChain**, **Groq (`openai/gpt-oss-120b`)**, **Streamlit**, and **REST APIs**.
+An enterprise IT HelpDesk service management platform built with FastAPI, Streamlit, LangChain, Groq, and SQLite.
 
-
-NovaDesk AI automatically classifies IT support requests, calculates ITIL-compliant SLA priorities, formulates step-by-step diagnostic procedures with copyable terminal commands, matches internal knowledge base runbooks, and creates trackable tickets via REST APIs.
+The platform automates IT support request classification, calculates ITIL-compliant SLA priorities, generates step-by-step diagnostic workflows with copyable terminal commands, matches internal knowledge base runbooks, and provides complete ticket lifecycle management via REST APIs and an operations dashboard. Full documentation is available in [DOCUMENTATION.pdf](DOCUMENTATION.pdf).
 
 ---
 
-## 🌟 Key Features
+## Key Features
 
-1. **⚡ AI Issue Classification & SLA Prioritization**:
-   - **ITIL Category Mapping**: Automatically classifies inquiries into *Hardware*, *Software*, *Network & Connectivity*, *Identity & Access (IAM)*, *Security & Compliance*, *Email & Collaboration*, *Cloud & Infrastructure*, etc.
-   - **Calculated Priorities**: Assigns **P1 Critical** (1h SLA), **P2 High** (4h SLA), **P3 Medium** (24h SLA), or **P4 Low** (48h SLA) based on urgency and impact.
-   - **Target Queue Routing**: Identifies the appropriate department (e.g., *NetOps*, *SecOps*, *IAM*, *DevOps*, *Workstation Tech*).
+1. **Automated Issue Classification & SLA Prioritization**:
+   - **ITIL Category Mapping**: Automatically classifies inquiries into *Hardware*, *Software*, *Network & Connectivity*, *Identity & Access (IAM)*, *Security & Compliance*, *Email & Collaboration*, *Cloud & Infrastructure*, and more.
+   - **Calculated Priorities**: Assigns **P1 Critical** (1h SLA), **P2 High** (4h SLA), **P3 Medium** (24h SLA), or **P4 Low** (48h SLA) based on calculated urgency and impact.
+   - **Target Queue Routing**: Routes requests to designated resolver teams (*NetOps*, *SecOps*, *IAM*, *DevOps*, *Workstation Support*).
 
-2. **🛠️ Actionable Troubleshooting & Solutions**:
-   - Generates sequential, step-by-step diagnostic actions tailored to the user's operating environment.
-   - Provides ready-to-run terminal, PowerShell, or bash commands (e.g. `ipconfig /flushdns`, `manage-bde -status`, `taskkill /F /IM outlook.exe`).
-   - Assesses whether the issue is self-resolvable or requires on-site technician escalation.
+2. **Actionable Diagnostic Procedures**:
+   - Generates sequential troubleshooting workflows tailored to the reported operating environment.
+   - Provides verified terminal, PowerShell, or bash commands (e.g., `ipconfig /flushdns`, `manage-bde -status`, `taskkill /F /IM outlook.exe`).
+   - Assesses whether an issue is self-resolvable or requires on-site technician escalation.
 
-3. **🎟️ Complete Ticket Management REST APIs**:
-   - Create tickets with automated or custom AI diagnostics (`POST /api/tickets`).
+3. **Complete Ticket Management REST APIs**:
+   - Create tickets with automated or custom diagnostics (`POST /api/tickets`).
    - Query tickets with real-time text search, status filters, priority filters, and pagination (`GET /api/tickets`).
    - Detailed ticket timeline and internal technician work notes thread (`POST /api/tickets/{id}/comments`).
    - Ticket resolution lifecycle with root-cause logging (`POST /api/tickets/{id}/resolve`).
-   - Interactive OpenAPI / Swagger UI at `/docs`.
+   - Interactive OpenAPI documentation at `/docs`.
 
-4. **💬 Conversational IT Helpdesk Agent**:
-   - Real-time chat with the AI Helpdesk Agent.
-   - Simultaneous live diagnosis extraction: as you chat, the **Live AI Incident Diagnosis Card** dynamically updates on the right.
-   - One-click **"Create Official Ticket From Diagnosis"** action.
+4. **Interactive Support Assistant & Live Diagnostics**:
+   - Real-time technician chat interface with live diagnostic extraction.
+   - Incident diagnosis card updates dynamically as details are provided.
+   - One-click ticket creation directly from diagnostics.
 
-5. **📚 Knowledge Base & Runbooks**:
-   - Searchable library of standard operating procedures (SOPs) for VPN issues, MFA desync, BitLocker recovery, Outlook cache corruption, Docker socket errors, and docking station display glitches.
+5. **Knowledge Base & Standard Operating Procedures**:
+   - Searchable library of standard operating procedures (SOPs) covering VPN gateways, MFA desync, BitLocker recovery, Outlook cache corruption, Docker socket errors, and docking station configurations.
 
-6. **📊 Operational SLA & Health Analytics**:
-   - Tracks total tickets, active queues, critical SLA compliance, and category distribution.
+6. **Operational SLA & Health Analytics**:
+   - Real-time tracking of active queues, critical SLA deadlines, resolution throughput, and incident category distributions.
 
 ---
 
-## 🏗️ Architecture & Technology Stack
+## Architecture & Technology Stack
 
 ```
-Chatbot/
+IT Helpdesk Agent/
 ├── app/
 │   ├── __init__.py
-│   ├── config.py             # Settings, env vars, Pydantic ConfigDict
-│   ├── database.py           # SQLite repository, migrations, and seed data
-│   ├── models.py             # Pydantic schemas for tickets, triage, chat, KB, stats
-│   ├── agent.py              # LangChain IT Helpdesk Agent using Groq gpt-oss-120b
+│   ├── config.py             # Settings, environment variables, Pydantic configuration
+│   ├── database.py           # SQLite repository, schema migrations, and seed data
+│   ├── models.py             # Pydantic schemas for tickets, triage, chat, KB, and metrics
+│   ├── agent.py              # LLM diagnosis engine using Groq gpt-oss-120b with heuristic fallbacks
 │   ├── routes/
 │   │   ├── __init__.py
-│   │   ├── triage.py         # AI Triage & Classification endpoints (/api/triage)
-│   │   ├── tickets.py        # Complete Ticket CRUD endpoints (/api/tickets)
-│   │   ├── agent_chat.py     # Interactive IT Helpdesk Chatbot (/api/agent/chat)
+│   │   ├── triage.py         # Triage and classification endpoints (/api/triage)
+│   │   ├── tickets.py        # Ticket CRUD and lifecycle endpoints (/api/tickets)
+│   │   ├── agent_chat.py     # Interactive support console (/api/agent/chat)
 │   │   ├── kb.py             # Knowledge Base API (/api/kb)
-│   │   └── stats.py          # Real-time metrics & SLA compliance (/api/stats)
-│   └── main.py               # FastAPI entry point & static file hosting
+│   │   └── stats.py          # Operational metrics & SLA compliance (/api/stats)
+│   └── main.py               # FastAPI application entry point and static file server
 ├── static/
 │   ├── css/
-│   │   └── style.css         # Modern animations, pulse indicators, scrollbars
+│   │   └── style.css         # Dashboard styles and animations
 │   ├── js/
-│   │   └── app.js            # Single Page Application controller (Vanilla JS)
-│   └── index.html            # Dark-mode dashboard (TailwindCSS + Lucide Icons)
+│   │   └── app.js            # Frontend application controller
+│   └── index.html            # HelpDesk dashboard interface
 ├── tests/
-│   ├── test_agent.py         # Agent diagnosis & fallback tests
-│   ├── test_tickets_api.py   # FastAPI tickets API tests
-│   └── test_triage_api.py    # Triage, KB, and stats tests
+│   ├── test_agent.py         # Diagnosis and fallback test suite
+│   ├── test_tickets_api.py   # Ticket management API test suite
+│   └── test_triage_api.py    # Triage, KB, and analytics test suite
+├── streamlit_app.py          # HelpDesk Command Center dashboard
+├── DOCUMENTATION.pdf         # Complete project documentation and architecture manual
 ├── run.py                    # Server startup script
-├── .env                      # Groq API Key and model configurations
+├── .env                      # Environment configuration
 └── requirements.txt          # Project dependencies
 ```
 
-- **Backend**: FastAPI 0.115+, Uvicorn, Pydantic v2
-- **AI / LLM Engine**: LangChain (`langchain-groq`), Groq API running `openai/gpt-oss-120b` (with automatic fallback to `openai/gpt-oss-20b` and heuristic rule-based engine)
-- **Database**: SQLite with thread-safe connection pooling and automatic seeding
-- **Frontend**: Responsive Single-Page Application (HTML5, TailwindCSS, Lucide Icons, Marked.js)
-- **Testing**: Pytest & HTTPX TestClient (9 passing unit & integration tests)
+- **Backend**: FastAPI, Uvicorn, Pydantic v2
+- **Language Models**: LangChain (`langchain-groq`), Groq API (`openai/gpt-oss-120b` with automatic fallback to `openai/gpt-oss-20b` and deterministic heuristic engine)
+- **Database**: SQLite with thread-safe connection pooling
+- **Frontend & Interfaces**: Streamlit Command Center, HTML5 / TailwindCSS / Lucide Icons Web Console
+- **Testing**: Pytest & HTTPX TestClient
 
 ---
 
-## 🚀 Quickstart Guide
+## Quickstart Guide
 
 ### 1. Environment Setup
 
 Ensure Python 3.10+ is installed:
 
 ```bash
-# Clone or navigate to the repository
-cd /home/mike/Desktop/Chatbot
+# Clone the repository
+git clone https://github.com/kcrimson-star/it-helpdesk-agent.git
+cd it-helpdesk-agent
 
-# Activate virtual environment
+# Create and activate virtual environment
+python3 -m venv .venv
 source .venv/bin/activate
 
-# Install dependencies (if needed)
+# Install dependencies
 pip install -r requirements.txt
 ```
 
 ### 2. Configure Environment Variables
 
-The `.env` file is already set up with your Groq API key:
+Create or configure `.env`:
 
 ```env
-GROQ_API_KEY="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"
+GROQ_API_KEY="your-groq-api-key"
 GROQ_MODEL="openai/gpt-oss-120b"
 GROQ_FALLBACK_MODEL="openai/gpt-oss-20b"
 APP_HOST="0.0.0.0"
@@ -114,39 +117,43 @@ DEBUG=True
 
 ### 3. Launch the Application
 
-Run the server with Python:
+#### Option A: HelpDesk Command Center (Streamlit Dashboard)
+```bash
+streamlit run streamlit_app.py
+```
+Access at: `http://localhost:8501`
 
+#### Option B: FastAPI Backend Service
 ```bash
 python run.py
 ```
-Or with Uvicorn directly:
+Or with Uvicorn:
 ```bash
 uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 ```
-
-Then open your browser at:
-- **Web Dashboard**: [http://localhost:8000](http://localhost:8000)
-- **Interactive OpenAPI Docs**: [http://localhost:8000/docs](http://localhost:8000/docs)
+Access at:
+- **Web Dashboard**: `http://localhost:8000`
+- **Interactive OpenAPI Documentation**: `http://localhost:8000/docs`
 
 ---
 
-## 🧪 Running the Test Suite
+## Running the Test Suite
 
-Run the full pytest suite:
+Execute the pytest test suite:
 
 ```bash
-PYTHONPATH=. .venv/bin/pytest -v
+PYTHONPATH=. pytest -v
 ```
 
-All 9 test suites will verify:
-- Rule-based & LLM issue diagnosis
-- ITIL category and priority assignments
-- Full ticket lifecycle: creation, filtering, comment addition, status patching, resolution
-- Knowledge Base search and statistical analytics
+All 9 test suites verify:
+- Issue diagnosis and category assignment
+- Priority calculation and SLA determination
+- Ticket lifecycle operations (creation, filtering, comment addition, status patching, resolution)
+- Knowledge Base search and statistical metrics
 
 ---
 
-## 📡 REST API Reference & Examples
+## REST API Reference
 
 ### 1. Classify and Triage an Issue
 ```bash
@@ -159,7 +166,7 @@ curl -X POST "http://localhost:8000/api/triage/classify" \
   }'
 ```
 
-### 2. Create a Ticket with Automatic AI Diagnosis
+### 2. Create a Ticket with Automated Diagnostics
 ```bash
 curl -X POST "http://localhost:8000/api/tickets" \
   -H "Content-Type: application/json" \
@@ -177,7 +184,7 @@ curl -X POST "http://localhost:8000/api/tickets" \
 curl -X GET "http://localhost:8000/api/tickets?status=Open&priority=Critical"
 ```
 
-### 4. Interactive Chat with Helpdesk Agent
+### 4. Interactive Chat
 ```bash
 curl -X POST "http://localhost:8000/api/agent/chat" \
   -H "Content-Type: application/json" \
@@ -187,7 +194,13 @@ curl -X POST "http://localhost:8000/api/agent/chat" \
   }'
 ```
 
-### 5. Mark Ticket as Resolved
+### 5. Resolve Ticket
 ```bash
 curl -X POST "http://localhost:8000/api/tickets/1041/resolve?resolution_notes=Reconfigured+failover+BGP+gateway+route"
 ```
+
+---
+
+## Documentation
+
+Full architectural specifications, data models, and API schemas are compiled in [DOCUMENTATION.pdf](DOCUMENTATION.pdf).
