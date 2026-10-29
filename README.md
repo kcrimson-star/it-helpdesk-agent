@@ -1,6 +1,9 @@
-# 🛡️ NovaDesk AI — Intelligent Enterprise IT Helpdesk Agent
+# NovaDesk AI — Intelligent Enterprise IT Helpdesk Agent
 
-An end-to-end, intermediate/production-grade IT Helpdesk management platform powered by **FastAPI**, **LangChain**, **Groq (`openai/gpt-oss-120b`)**, and **REST APIs**.
+![IT Helpdesk Agent Motion Graphics Showcase](it_helpdesk_preview.gif)
+
+An end-to-end IT Helpdesk management platform powered by **FastAPI**, **LangChain**, **Groq (`openai/gpt-oss-120b`)**, **Streamlit**, and **REST APIs**.
+
 
 NovaDesk AI automatically classifies IT support requests, calculates ITIL-compliant SLA priorities, formulates step-by-step diagnostic procedures with copyable terminal commands, matches internal knowledge base runbooks, and creates trackable tickets via REST APIs.
 
