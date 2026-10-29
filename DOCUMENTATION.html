@@ -430,7 +430,7 @@
   <!-- Top Toolbar -->
   <div class="top-toolbar no-print">
     <h1>
-      <span> NovaDesk AI Documentation</span>
+      <span>NovaDesk AI Documentation</span>
       <span class="badge">7-Page Executive Specification</span>
     </h1>
     <div style="display: flex; gap: 8px; align-items: center;">
@@ -554,13 +554,13 @@
       <h2 class="section-heading">4. Architectural Design Principles</h2>
       <div class="grid-2">
         <div class="card">
-          <div class="card-title">⚡ Zero-Latency Fallback Guarantee</div>
+          <div class="card-title">Zero-Latency Fallback Guarantee</div>
           <div class="card-body">
             If external internet connectivity, Groq API quotas, or network policies block LLM execution, the agent instantly drops back to a built-in deterministic heuristic rule engine without dropping tickets.
           </div>
         </div>
         <div class="card">
-          <div class="card-title">🛡️ Strict ITIL Alignment</div>
+          <div class="card-title">Strict ITIL Alignment</div>
           <div class="card-body">
             Priorities (P1-P4) are evaluated by calculating operational Impact and Urgency matrices, establishing legally defensible SLA resolution deadlines (1h to 48h).
           </div>
@@ -663,7 +663,7 @@ Return strictly valid JSON with schema:
       </p>
       <div class="grid-2">
         <div class="card">
-          <div class="card-title">🌐 Network & Gateway Filter</div>
+          <div class="card-title">Network & Gateway Filter</div>
           <div class="card-body">
             Detects: <span class="inline-code">vpn</span>, <span class="inline-code">wifi</span>, <span class="inline-code">dns</span>, <span class="inline-code">timeout 502</span>.<br>
             Categorizes: <strong>Network & Connectivity</strong> • Priority: <strong>High</strong>.<br>
@@ -671,7 +671,7 @@ Return strictly valid JSON with schema:
           </div>
         </div>
         <div class="card">
-          <div class="card-title">🔐 Identity & Access Filter</div>
+          <div class="card-title">Identity & Access Filter</div>
           <div class="card-body">
             Detects: <span class="inline-code">mfa</span>, <span class="inline-code">okta</span>, <span class="inline-code">locked</span>, <span class="inline-code">password</span>.<br>
             Categorizes: <strong>Identity & Access (IAM)</strong> • Priority: <strong>Medium</strong>.<br>
@@ -679,7 +679,7 @@ Return strictly valid JSON with schema:
           </div>
         </div>
         <div class="card">
-          <div class="card-title">🚨 Security & Drive Encryption</div>
+          <div class="card-title">Security & Drive Encryption</div>
           <div class="card-body">
             Detects: <span class="inline-code">bitlocker</span>, <span class="inline-code">ransom</span>, <span class="inline-code">breach</span>, <span class="inline-code">bsod</span>.<br>
             Categorizes: <strong>Security & Compliance</strong> • Priority: <strong>Critical</strong>.<br>
@@ -687,7 +687,7 @@ Return strictly valid JSON with schema:
           </div>
         </div>
         <div class="card">
-          <div class="card-title">🖥️ Hardware & Peripherals</div>
+          <div class="card-title">Hardware & Peripherals</div>
           <div class="card-body">
             Detects: <span class="inline-code">dock</span>, <span class="inline-code">monitor</span>, <span class="inline-code">flicker</span>, <span class="inline-code">hdmi</span>.<br>
             Categorizes: <strong>Hardware</strong> • Priority: <strong>Medium</strong>.<br>
@@ -826,7 +826,7 @@ Return strictly valid JSON with schema:
   </div>
 
   <!-- ========================================================================= -->
-  <!-- PAGE 4: STREAMLIT & REACT FRONTEND ARCHITECTURE -->
+  <!-- PAGE 4: STREAMLIT COMMAND CENTER & OPERATIONS ARCHITECTURE -->
   <!-- ========================================================================= -->
   <div class="page" id="page-4">
     <div class="page-header">
@@ -838,53 +838,49 @@ Return strictly valid JSON with schema:
     </div>
 
     <div class="page-content">
-      <h1 class="page-title">Streamlit UI & React 18 Integration</h1>
+      <h1 class="page-title">Streamlit Command Center & Operations UI</h1>
       <p class="page-subtitle">
-        Architectural synthesis of Python-based Streamlit rapid-prototyping reactivity with high-performance embedded client-side React 18 UI components.
+        Architectural breakdown of the dark-navy Command Center dashboard, live KPI pulse telemetry, dynamic queue reactions, and zero-emoji enterprise styling.
       </p>
 
-      <h2 class="section-heading">1. Hybrid Presentation Architecture</h2>
+      <h2 class="section-heading">1. Command Center Telemetry Architecture</h2>
       <p>
-        The user interface combines the best of both worlds: <strong>Streamlit</strong> (<span class="inline-code">streamlit_app.py</span>) provides instant full-stack Python data binding, reactive session state management, and operational KPI dashboards, while an embedded <strong>React 18</strong> micro-component provides instantaneous, client-side UI interactions without round-trip server refreshes.
+        Implemented in <span class="inline-code">streamlit_app.py</span>, the user interface adopts an executive dark-navy operational command center theme (<span class="inline-code">#0b0f19</span> / <span class="inline-code">#131b2e</span>). The UI delivers instantaneous feedback on ticket updates without hard page refreshes, powered by direct SQLite binding and fallback REST integrations.
       </p>
 
-      <h2 class="section-heading">2. Multi-Tab Operational Layout</h2>
+      <h2 class="section-heading">2. Dashboard Subsystems & Visual Hierarchy</h2>
       <div class="grid-3">
         <div class="card">
-          <div class="card-title">🔍 Tab 1: AI Triage</div>
+          <div class="card-title">Top Telemetry Bar</div>
           <div class="card-body">
-            • 4 Quick Scenario Test Buttons.<br>
-            • Issue Description Intake Form.<br>
-            • Live Groq LLM Diagnosis Box.<br>
-            • Color-coded Category & Priority.<br>
-            • 1-Click "Create Ticket via API".
+            • <strong>Support Live</strong>: 99.9% uptime.<br>
+            • <strong>Active Conversations</strong>: Open queue count.<br>
+            • <strong>Queue Wait Time</strong>: 2m 18s target.<br>
+            • <strong>Agents Online</strong>: 8 active specialists.<br>
+            • <strong>SLA Health</strong>: Real-time compliance rate.
           </div>
         </div>
         <div class="card">
-          <div class="card-title">📋 Tab 2: Ticket Center</div>
+          <div class="card-title">Ticket Pulse & Stat Pills</div>
           <div class="card-body">
-            • Query and Filter by Status / SLA.<br>
-            • Expandable Ticket Detail cards.<br>
-            • Instant "Mark Resolved" triggers.<br>
-            • Requester and Department badges.<br>
-            • Automatic database sync.
+            • <strong>24-Hour Area Chart</strong>: Volume trends.<br>
+            • <strong>5 Status Pills</strong>: New, In Progress, Pending, Resolved Today, Breached.<br>
+            • Dynamic increments/decrements on ticket state transitions.
           </div>
         </div>
         <div class="card">
-          <div class="card-title">⚛️ Tab 3: React 18 Radar</div>
+          <div class="card-title">Distribution & Dispatch</div>
           <div class="card-body">
-            • Real-time Client-side State.<br>
-            • Live Incident Matrix Board.<br>
-            • One-click Incident Simulator.<br>
-            • Zero-latency resolve toggles.<br>
-            • Standalone Babel compilation.
+            • <strong>3x2 Matrix</strong>: Urgent, High, Medium, Low, On Hold, Unassigned.<br>
+            • <strong>Channel Mix</strong>: Email, Chat, Phone, Portal, Social.<br>
+            • <strong>Team Dispatch</strong>: Sarah, Marcus, Aisha, David.
           </div>
         </div>
       </div>
 
-      <h2 class="section-heading">3. Embedded Client-Side React 18 Implementation</h2>
+      <h2 class="section-heading">3. My Queue & Live Ticket State Reactivity</h2>
       <p>
-        React is injected seamlessly into Streamlit via <span class="inline-code">streamlit.components.v1.html</span>, utilizing unpkg CDN bundles for React 18, ReactDOM, and Babel standalone:
+        The active queue stream is configured with <strong>Newest-First</strong> ordering (<span class="inline-code">ORDER BY id DESC</span>), guaranteeing that incoming inquiries (such as gaming GPU stutters or VPN drops) appear immediately at the top of the queue:
       </p>
       <div class="code-terminal">
         <div class="terminal-dots">
@@ -892,39 +888,28 @@ Return strictly valid JSON with schema:
           <div class="terminal-dot dot-yellow"></div>
           <div class="terminal-dot dot-green"></div>
         </div>
-<span style="color:#82aaff">// React 18 Incident Radar Micro-Widget:</span>
-const { useState } = React;
-function HelpdeskRadar() {
-  const [incidents, setIncidents] = useState(initialIncidents);
-  const [filter, setFilter] = useState("All");
+<span style="color:#82aaff">// Live Ticket Action & Dynamic State Trigger:</span>
+def resolve_ticket_action(t_id: int):
+    update_ticket(t_id, {"status": "Resolved", "resolution_notes": "Resolved via Command Center"})
+    st.rerun()  # Instantly increments 'Resolved Today' (+1) and decrements 'New/In Progress' (-1)
 
-  const toggleStatus = (id) => {
-    setIncidents(incidents.map(inc => inc.id === id ? { ...inc, status: inc.status === "Active" ? "Resolved" : "Active" } : inc));
-  };
-  return (
-    &lt;div className="container"&gt;
-      &lt;div className="header"&gt;
-        &lt;h3&gt;⚡ React 18 Real-Time Incident Board&lt;/h3&gt;
-        &lt;button onClick={addIncident}&gt;+ Simulate Incident&lt;/button&gt;
-      &lt;/div&gt;
-      {/* Dynamic DOM rendering without triggering Streamlit server rerun */}
-    &lt;/div&gt;
-  );
-}
+def reopen_ticket_action(t_id: int):
+    update_ticket(t_id, {"status": "Open", "resolution_notes": ""})
+    st.rerun()  # Automatically reverts counters and clears resolved_at timestamp
       </div>
 
-      <h2 class="section-heading">4. UI/UX Refinements for Operational Engineers</h2>
+      <h2 class="section-heading">4. Zero-Emoji Enterprise Styling Standard</h2>
       <div class="grid-2">
         <div class="card">
-          <div class="card-title">📊 Operational KPI Cards</div>
+          <div class="card-title">Clean Typography & Native Pills</div>
           <div class="card-body">
-            Top-level metrics calculating Total Tickets, Open/In Progress count, and Resolved issues provide immediate at-a-glance health metrics for helpdesk supervisors.
+            All conversational emojis have been stripped from headings, buttons, and navigation options, adhering to a minimalist enterprise design standard suited for corporate NOC and SOC environments.
           </div>
         </div>
         <div class="card">
-          <div class="card-title">💻 Copy-Paste Command Boxes</div>
+          <div class="card-title">Interactive Navigation Sidebar</div>
           <div class="card-body">
-            Technical troubleshooting steps surface executable commands (<span class="inline-code">ipconfig /flushdns</span>, <span class="inline-code">manage-bde</span>) in native code blocks for instantaneous engineer execution.
+            Enables instant switching across <strong>Dashboard</strong>, <strong>Tickets</strong> (search & filter by code/requester), <strong>AI Triage & New Ticket</strong> (Groq analyzer form), and <strong>Knowledge Base</strong> runbooks.
           </div>
         </div>
       </div>
@@ -994,7 +979,7 @@ function HelpdeskRadar() {
       <h2 class="section-heading">3. Pre-Seeded Enterprise Knowledge Base Runbooks</h2>
       <div class="grid-2">
         <div class="card">
-          <div class="card-title">📘 KB-01: GlobalProtect VPN Gateway Drops</div>
+          <div class="card-title">KB-01: GlobalProtect VPN Gateway Drops</div>
           <div class="card-body">
             <strong>Category:</strong> Network & Connectivity<br>
             <strong>Symptoms:</strong> Gateway connection timeout error 502, split-tunnel drops.<br>
@@ -1002,7 +987,7 @@ function HelpdeskRadar() {
           </div>
         </div>
         <div class="card">
-          <div class="card-title">📘 KB-02: Okta / Entra ID MFA Device Lost</div>
+          <div class="card-title">KB-02: Okta / Entra ID MFA Device Lost</div>
           <div class="card-body">
             <strong>Category:</strong> Identity & Access (IAM)<br>
             <strong>Symptoms:</strong> Push notification timeout, new phone authentication block.<br>
@@ -1010,7 +995,7 @@ function HelpdeskRadar() {
           </div>
         </div>
         <div class="card">
-          <div class="card-title">📘 KB-03: BitLocker Drive Encryption Prompt</div>
+          <div class="card-title">KB-03: BitLocker Drive Encryption Prompt</div>
           <div class="card-body">
             <strong>Category:</strong> Security & Compliance<br>
             <strong>Symptoms:</strong> Blue BitLocker recovery key screen after firmware/BIOS update.<br>
@@ -1018,7 +1003,7 @@ function HelpdeskRadar() {
           </div>
         </div>
         <div class="card">
-          <div class="card-title">📘 KB-04: Outlook OST Cache Corruption</div>
+          <div class="card-title">KB-04: Outlook OST Cache Corruption</div>
           <div class="card-body">
             <strong>Category:</strong> Email & Collaboration<br>
             <strong>Symptoms:</strong> Calendar sync stalls, inbox freezing, Send/Receive errors.<br>
@@ -1237,7 +1222,7 @@ API_BASE_URL="http://localhost:8000/api"
       <h2 class="section-heading">2. Step-by-Step Production Startup Procedures</h2>
       <div class="grid-2">
         <div class="card">
-          <div class="card-title">🚀 1. Start FastAPI REST Service</div>
+          <div class="card-title">1. Start FastAPI REST Service</div>
           <div class="card-body">
             Launches asynchronous Uvicorn worker daemon:<br>
             <span class="inline-code">python3 run.py</span><br>
@@ -1246,10 +1231,10 @@ API_BASE_URL="http://localhost:8000/api"
           </div>
         </div>
         <div class="card">
-          <div class="card-title">🖥️ 2. Start Streamlit UI & React Board</div>
+          <div class="card-title">2. Start Streamlit UI & Command Center</div>
           <div class="card-body">
             Launches user interface dashboard:<br>
-            <span class="inline-code">.venv/bin/streamlit run streamlit_app.py</span><br>
+            <span class="inline-code">streamlit run streamlit_app.py</span><br>
             • Web URL: <span class="inline-code">http://localhost:8501</span><br>
             • Bound with REST API backend.
           </div>
@@ -1292,19 +1277,19 @@ API_BASE_URL="http://localhost:8000/api"
       <h2 class="section-heading">4. Architectural Roadmap & Future Hardening</h2>
       <div class="grid-3">
         <div class="card">
-          <div class="card-title">🐳 Containerization</div>
+          <div class="card-title">Containerization</div>
           <div class="card-body">
             Package FastAPI and Streamlit into dual-stage Docker compose containers for unified Kubernetes orchestration.
           </div>
         </div>
         <div class="card">
-          <div class="card-title">🧠 Vector Embeddings</div>
+          <div class="card-title">Vector Embeddings</div>
           <div class="card-body">
             Upgrade SQLite fuzzy matching to ChromaDB / FAISS dense vector search for multi-lingual semantic runbook retrieval.
           </div>
         </div>
         <div class="card">
-          <div class="card-title">🔗 Webhook Integrations</div>
+          <div class="card-title">Incident Webhooks</div>
           <div class="card-body">
             Deliver outbound webhooks to Slack, Microsoft Teams, and Jira Service Management upon ticket resolution.
           </div>
